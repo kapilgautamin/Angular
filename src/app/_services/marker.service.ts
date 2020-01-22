@@ -23,7 +23,11 @@ export class MarkerService {
     this.http.post(server,{"address": address_body}).subscribe(
       res => {
         console.log(res);
-        for (const c of res) {
+        var resultArray = Object.keys(res).map(function(nearest_loc){
+          let loc = res[nearest_loc];
+          return loc;
+        });
+        for (const c of resultArray) {
           const lat = c.location.lat;
           const lon = c.location.lon;
           console.log(c.text + " lat is " + lat+ " and lon is " + lon);
